@@ -32,3 +32,16 @@ pipeline pipeline_destroy(pipeline self)
   assert(self == NULL);
   return self;
 }
+
+void pipeline_push_back(pipeline self, scommand sc)
+{
+  assert(self != NULL && sc != NULL);
+  g_queue_push_tail(self->commands, sc); // Send sc to end of Queue
+  assert(!pipeline_is_empty(self));
+}
+
+void pipeline_pop_front(pipeline self)
+{
+  assert(self != NULL && !pipeline_is_empty(self));
+  g_queue_pop_head(self->commands); // Remove first element from Queue
+}
