@@ -66,3 +66,18 @@ unsigned int pipeline_length(const pipeline self)
   assert((result == 0) == pipeline_is_empty(self));
   return result;
 }
+
+scommand pipeline_front(const pipeline self)
+{
+  assert(self != NULL && ! pipeline_is_empty(self));
+  scommand result;
+  result = g_queue_peek_head(self->commands); // Returns the first element of the queue.
+  assert(result != NULL);
+  return result;
+}
+
+bool pipeline_get_wait(const pipeline self)
+{
+  assert(self != NULL);
+  return self->should_wait;
+}
