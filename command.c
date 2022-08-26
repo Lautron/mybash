@@ -51,3 +51,18 @@ void pipeline_set_wait(pipeline self, const bool w)
   assert(self != NULL);
   self->should_wait = w;
 }
+
+bool pipeline_is_empty(const pipeline self)
+{
+  assert(self != NULL);
+  return g_queue_is_empty(self->commands);
+}
+
+unsigned int pipeline_length(const pipeline self)
+{
+  assert(self != NULL);
+  unsigned int result;
+  result = g_queue_get_length(self->commands);
+  assert((result == 0) == pipeline_is_empty(self));
+  return result;
+}
