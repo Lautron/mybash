@@ -45,3 +45,9 @@ void pipeline_pop_front(pipeline self)
   assert(self != NULL && !pipeline_is_empty(self));
   g_queue_pop_head(self->commands); // Remove first element from Queue
 }
+
+void pipeline_set_wait(pipeline self, const bool w)
+{
+  assert(self != NULL);
+  self->should_wait = w;
+}
