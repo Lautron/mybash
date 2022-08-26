@@ -92,23 +92,6 @@ char * pipeline_to_string(const pipeline self)
     strcat(result, g_queue_peek_nth(self->commands,i));
     if( i < pipeline_length(self) - 1 )
     {
-    strcat(result, " | ");
-    }
-  }
-  assert(pipeline_is_empty(self) || pipeline_get_wait(self) || strlen(result)>0);
-  return result;
-}
-
-char * pipeline_to_string(const pipeline self)
-{
-  assert(self != NULL);
-  char * result;
-  result = "";
-  for(unsigned int i = 0u; i < pipeline_length(self); ++i)
-  {
-    strcat(result, g_queue_peek_nth(self->commands,i));
-    if( i < pipeline_length(self) - 1 )
-    {
       strcat(result, " | ");
     }
   }
